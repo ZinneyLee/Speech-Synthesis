@@ -112,23 +112,15 @@ class BasePreprocessor:
             mfa_input_dir = f"{processed_dir}/mfa_inputs"
             remove_file(mfa_input_dir)
             # group MFA inputs for better parallelism
-            mfa_groups = [
-                i // self.preprocess_args["nsample_per_mfa_group"]
-                for i in range(len(items))
-            ]
-            if self.preprocess_args["mfa_group_shuffle"]:
-                random.seed(hparams["seed"])
-                random.shuffle(mfa_groups)
-            args = [
-                {
-                    "item": item,
-                    "mfa_input_dir": mfa_input_dir,
-                    "mfa_group": mfa_group,
-                    "wav_processed_tmp": wav_processed_tmp_dir,
-                    "preprocess_args": self.preprocess_args,
-                }
-                for item, mfa_group in zip(items, mfa_groups)
-            ]
+            args = []
+            for item in items:
+                for spk in spk_names:
+                    if item['spk_name'] == spk:
+                        line = {"item": item, "mfa_input_dir": mfa_input_dir, "mfa_group": spk_map[spk], 
+                            "wav_processed_tmp": wav_processed_tmp_dir,"preprocess_args": self.preprocess_args,}
+                        args.append(line)
+                    
+            
             for i, (ph_gb_word_nosil, new_wav_align_fn) in multiprocess_run_tqdm(
                 self.build_mfa_inputs, args, desc="Build MFA data"
             ):
