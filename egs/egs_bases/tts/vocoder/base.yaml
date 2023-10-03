@@ -1,0 +1,37 @@
+base_config:
+  - egs/egs_bases/config_base.yaml
+  - ../dataset_params.yaml
+  - ./hifigan.yaml
+binarization_args:
+  with_wav: true
+  with_spk_embed: false
+  with_align: false
+
+generator_grad_norm: 10.0    # Generator's gradient norm.
+discriminator_grad_norm: 1.0 # Discriminator's gradient norm.
+
+
+resblock: "1"
+adam_b1: 0.8
+adam_b2: 0.99
+
+
+use_pitch_embed: false
+use_fm_loss: false
+use_ms_stft: false
+
+lambda_mel: 5.0
+lambda_mel_adv: 1.0
+lambda_cdisc: 4.0
+lambda_adv: 1.0
+
+
+###########
+# train and eval
+###########
+max_samples: 20480
+max_sentences: 8
+max_valid_sentences: 1
+max_updates: 2000000
+val_check_interval: 5000
+valid_infer_interval: 50000

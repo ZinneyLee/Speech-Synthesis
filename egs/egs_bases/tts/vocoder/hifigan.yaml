@@ -1,0 +1,25 @@
+base_config: ./base.yaml, 
+task_cls: tasks.vocoder.hifigan.HifiGanTask
+#task_cls: modules.vocoder.hifigan.hifigan_only_mrd_c.Generator
+resblock: "1"
+adam_b1: 0.8
+adam_b2: 0.99
+
+
+use_pitch_embed: false
+use_fm_loss: false
+use_ms_stft: false
+
+lambda_mel: 5.0
+lambda_mel_adv: 1.0
+lambda_cdisc: 4.0
+lambda_adv: 1.0
+
+lr: 0.0002            # Generator's learning rate.
+generator_scheduler_params:
+  step_size: 600
+  gamma: 0.999
+discriminator_scheduler_params:
+  step_size: 600
+  gamma: 0.999
+max_updates: 3000000

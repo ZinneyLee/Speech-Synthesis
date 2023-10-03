@@ -1,0 +1,4 @@
+base_config: egs/egs_bases/tts/vocoder/base.yaml
+raw_data_dir: '/hd0/jelee/dataset/source/LibriTTS'
+processed_data_dir: '/hd0/jelee/dataset/processed/libritts'
+binary_data_dir: '/hd0/jelee/dataset/binary/libritts24k'

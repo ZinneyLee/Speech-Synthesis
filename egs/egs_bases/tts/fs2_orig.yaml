@@ -1,0 +1,29 @@
+base_config: ./fs.yaml
+task_cls: tasks.tts.fs2_orig.FastSpeech2OrigTask
+encoder_type: fft
+decoder_type: fft
+use_energy_embed: false
+use_pitch_embed: true
+pitch_type: cwt # frame|ph|cwt
+binarization_args:
+  with_f0cwt: true
+use_gt_energy: false
+cwt_std_scale: 0.8
+dropout: 0.1
+mel_losses: l1
+
+val_check_interval: 5000
+valid_infer_interval: 5000
+
+# StyleSpeech
+style_hidden: 128
+style_vector_dim: 256
+style_kernel_size: 5
+style_head: 2
+
+use_gt_dur: False
+
+# Emoq-TTS
+gst_size: 32
+Ca: 256
+distance_loss_cost: 10
