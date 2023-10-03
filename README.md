@@ -37,7 +37,7 @@ To download these, you need to have sufficient storage capacity of over 37GB.
 
 ## Code Description
 ** Environment Setting **
-```
+```bash
 export PYTHONPATH=.
 
 # build a virtual env (recommended).
