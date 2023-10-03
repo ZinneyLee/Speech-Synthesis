@@ -28,9 +28,29 @@ FeaturesDict({
 
 You can download the dataset [here](https://www.openslr.org/60/). 
 
-
 You should download all datasets in the form of *'???-clean.tar.gz'*. 
 
 
 To download these, you need to have sufficient storage capacity of over 37GB.
   - If you want to use validation set, you can use *'dev-clean.tar.gz'*.
+
+
+## Code Description
+** Environment Setting **
+```
+export PYTHONPATH=.
+
+# build a virtual env (recommended).
+conda env create -n ENV_NAME python==3.8.16
+
+# activate the virtual env
+conda activate ENV_NAME
+
+# install requirements.
+pip install -U pip
+pip install Cython numpy==1.19.1
+pip install torch==1.11.0+cu113 torchvision==0.12.0+cu113 torchaudio==0.11.0 --extra-index-url https://download.pytorch.org/whl/cu113
+pip install -r requirements.txt
+sudo apt install -y sox libsox-fmt-mp3
+bash mfa_usr/install_mfa.sh # install forced alignment tool
+```
